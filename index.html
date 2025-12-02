@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Krishna's Lens | Photography Portfolio & Sessions</title>
+    <!-- Using Inter for a clean, modern look -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* --- CSS STYLES --- */
+        :root {
+            --bg-dark: #1a1a1a;
+            --text-light: #f5f5f5;
+            --accent-gold: #ffc107; /* Gold/Amber for accents */
+            --shadow: 0 4px 15px rgba(255, 255, 255, 0.05);
+            --white: #ffffff;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            line-height: 1.6;
+            scroll-behavior: smooth;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        section {
+            padding: 80px 0;
+            text-align: center;
+        }
+        
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            color: var(--accent-gold);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* 1. HEADER AND NAVIGATION */
+        header {
+            background-color: #111;
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--white);
+            text-decoration: none;
+        }
+        
+        .logo span {
+            color: var(--accent-gold);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+        }
+
+        nav li {
+            margin-left: 30px;
+        }
+
+        nav a {
+            color: var(--text-light);
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--accent-gold);
+        }
+        
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            border-radius: 4px;
+            font-weight: 600;
+            text-align: center;
+            cursor: pointer;
+            text-transform: uppercase;
+            transition: background-color 0.3s, transform 0.2s;
+            border: 2px solid var(--accent-gold);
+        }
+
+        .btn-primary {
+            background-color: var(--accent-gold);
+            color: var(--bg-dark);
+        }
+
+        .btn-primary:hover {
+            background-color: #e6b100;
+            transform: translateY(-2px);
+        }
+
+        /* 2. HERO SECTION */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
+                      url('https://placehold.co/1200x600/333/ffffff?text=Professional+Photographer') no-repeat center center/cover;
+            padding: 180px 20px;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 15px;
+            color: var(--white);
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 40px;
+            color: #ccc;
+        }
+
+        /* 3. PORTFOLIO GALLERY & FILTERS */
+        #portfolio {
+            background-color: #222;
+        }
+        
+        .filters {
+            margin-bottom: 40px;
+        }
+        
+        .filter-btn {
+            background: none;
+            border: 1px solid var(--text-light);
+            color: var(--text-light);
+            padding: 8px 15px;
+            margin: 5px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .filter-btn.active, .filter-btn:hover {
+            background-color: var(--accent-gold);
+            color: var(--bg-dark);
+            border-color: var(--accent-gold);
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .gallery-item {
+            overflow: hidden;
+            border-radius: 4px;
+            position: relative;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+            cursor: pointer;
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+        
+        .gallery-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+            padding: 30px 10px 10px;
+            color: var(--white);
+            text-align: left;
+            font-weight: 600;
+            font-size: 1.1rem;
+            pointer-events: none;
+        }
+
+        /* 4. SERVICES AND BOOKING */
+        #services {
+            background-color: var(--bg-dark);
+        }
+        
+        .services-grid {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+
+        .service-card {
+            max-width: 350px;
+            background: #222;
+            padding: 30px;
+            border-radius: 8px;
+            border-bottom: 4px solid var(--accent-gold);
+        }
+        
+        .service-card i {
+            font-size: 2.5rem;
+            color: var(--accent-gold);
+            margin-bottom: 15px;
+        }
+
+        /* Booking Form */
+        .booking-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background: #222;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #444;
+            background-color: #333;
+            color: var(--text-light);
+            border-radius: 5px;
+            font-family: 'Inter', sans-serif;
+        }
+        
+        /* Message Box */
+        #booking-message {
+            margin-top: 25px;
+            padding: 15px;
+            border-radius: 4px;
+            font-weight: 600;
+            display: none;
+        }
+
+        /* 5. FOOTER */
+        footer {
+            background-color: #111;
+            padding: 30px 0;
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            color: var(--accent-gold);
+            margin: 0 10px;
+        }
+
+        /* RESPONSIVENESS */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 3rem; }
+            .hero p { font-size: 1.2rem; }
+
+            .navbar {
+                flex-direction: column;
+                gap: 15px;
+            }
+            nav ul {
+                justify-content: center;
+            }
+            nav li {
+                margin: 0 10px;
+            }
+            
+            .content-grid, .services-grid, .gallery-grid {
+                grid-template-columns: 1fr;
+                flex-direction: column;
+            }
+            
+            .services-grid {
+                gap: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 1. HEADER & NAVIGATION -->
+    <header>
+        <div class="navbar container">
+            <a href="#" class="logo">Krishna's <span>Lens</span></a>
+            <nav>
+                <ul>
+                    <li><a href="#portfolio">Portfolio</a></li>
+                    <li><a href="#services">Sessions</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- 2. HERO SECTION -->
+    <section class="hero">
+        <h1>Capturing Moments, Creating Art</h1>
+        <p>Krishna Verma | Specializing in evocative portraits and stunning landscapes.</p>
+        <a href="#booking-form-section" class="btn btn-primary">Book Your Session</a>
+    </section>
+
+    <!-- 3. PORTFOLIO GALLERY -->
+    <section id="portfolio">
+        <div class="container">
+            <h2>Featured Work</h2>
+
+            <!-- Filter Buttons -->
+            <div class="filters">
+                <button class="filter-btn active" onclick="filterGallery('all')">All Categories</button>
+                <button class="filter-btn" onclick="filterGallery('portraits')">Portraits</button>
+                <button class="filter-btn" onclick="filterGallery('landscape')">Landscape</button>
+                <button class="filter-btn" onclick="filterGallery('events')">Events</button>
+            </div>
+
+            <!-- Image Grid -->
+            <div class="gallery-grid" id="gallery-container">
+                <!-- Images will be injected by JavaScript/filtered based on category -->
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. SERVICES AND BOOKING -->
+    <section id="services">
+        <div class="container">
+            <h2>Session Types & Booking</h2>
+            
+            <div class="services-grid">
+                <!-- Service Card 1 -->
+                <div class="service-card">
+                    <i class="fas fa-camera-retro"></i>
+                    <h3>Personal Portraits</h3>
+                    <p>Ideal for individuals, professional headshots, or creative studio sessions.</p>
+                </div>
+                 <!-- Service Card 2 -->
+                <div class="service-card">
+                    <i class="fas fa-ring"></i>
+                    <h3>Intimate Events</h3>
+                    <p>Coverage for small weddings, engagements, and milestone birthday celebrations.</p>
+                </div>
+                 <!-- Service Card 3 -->
+                <div class="service-card">
+                    <i class="fas fa-tree"></i>
+                    <h3>Fine Art Prints</h3>
+                    <p>High-resolution prints of landscape and travel photography available for purchase.</p>
+                </div>
+            </div>
+            
+            <!-- Booking Form -->
+            <section id="booking-form-section" style="padding-top: 0;">
+                <h3 style="color: var(--text-light); margin-top: 20px;">Inquire About Availability</h3>
+                <form id="booking-form" class="booking-form">
+                    <div class="form-group">
+                        <label for="clientName">Your Name:</label>
+                        <input type="text" id="clientName" required placeholder="Full Name">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="sessionType">Type of Session:</label>
+                        <select id="sessionType" required>
+                            <option value="">-- Select Service --</option>
+                            <option value="Portrait">Personal Portrait</option>
+                            <option value="Event">Intimate Event</option>
+                            <option value="Print">Print Inquiry</option>
+                            <option value="Other">Other Inquiry</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="preferredDate">Preferred Date:</label>
+                        <input type="date" id="preferredDate" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="details">Tell me about your vision:</label>
+                        <textarea id="details" rows="4" placeholder="Briefly describe your requirements, location, or budget."></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary" style="width: 100%;">Submit Booking Inquiry</button>
+                </form>
+                
+                <!-- JavaScript Message Box -->
+                <div id="booking-message"></div>
+            </section>
+        </div>
+    </section>
+
+    <!-- 5. FOOTER -->
+    <footer id="contact">
+        <div class="container">
+            <p>&copy; 2025 Krishna's Lens. All rights reserved.</p>
+            <p>Connect: <a href="#"><i class="fab fa-instagram"></i></a> | <a href="#"><i class="fas fa-envelope"></i></a> | Phone: (555) 555-PHOT</p>
+        </div>
+    </footer>
+
+
+    <!-- --- JAVASCRIPT LOGIC --- -->
+    <script>
+        // 1. Data Structure for Gallery (UPDATED SAMPLE DATA)
+        const galleryData = [
+            // Portraits
+            { id: 1, category: 'portraits', caption: 'Dramatic Low-Key Studio', color: '9932cc', text: 'Dramatic+Portrait' },
+            { id: 3, category: 'portraits', caption: 'Golden Hour Outdoor', color: 'ffb900', text: 'Golden+Hour+Portrait' },
+            { id: 6, category: 'portraits', caption: 'Monochrome Urban Vibe', color: '708090', text: 'Monochrome+Headshot' },
+            // Landscape
+            { id: 2, category: 'landscape', caption: 'Misty Mountain Morning', color: '6495ed', text: 'Misty+Mountains' },
+            { id: 5, category: 'landscape', caption: 'Coastal Sunset View', color: 'cd5c5c', text: 'Coastal+Sunset' },
+            { id: 8, category: 'landscape', caption: 'Desert Night Stars', color: '4682b4', text: 'Night+Sky' },
+            // Events
+            { id: 4, category: 'events', caption: 'Candid Engagement Moment', color: 'daa520', text: 'Engagement+Event' },
+            { id: 7, category: 'events', caption: 'Vibrant Corporate Launch', color: 'ff7f50', text: 'Corporate+Launch' },
+        ];
+
+        const galleryContainer = document.getElementById('gallery-container');
+
+        // 2. Render Gallery Function (UPDATED TO USE DESCRIPTIVE TEXT IN PLACEHOLDERS)
+        function renderGallery(filter = 'all') {
+            galleryContainer.innerHTML = '';
+            
+            const filteredData = filter === 'all' 
+                ? galleryData
+                : galleryData.filter(item => item.category === filter);
+
+            if (filteredData.length === 0) {
+                 galleryContainer.innerHTML = '<p style="grid-column: 1 / -1; margin-top: 20px; font-size: 1.1rem; color: #aaa;">No images found in this category.</p>';
+                 return;
+            }
+
+            filteredData.forEach(item => {
+                const itemDiv = document.createElement('div');
+                itemDiv.className = 'gallery-item';
+                
+                // Using a unique placeholder image based on color and new descriptive text
+                const imgUrl = `https://placehold.co/400x300/${item.color}/000?text=${item.text}`;
+                
+                itemDiv.innerHTML = `
+                    <img src="${imgUrl}" alt="${item.caption}">
+                    <div class="gallery-caption">${item.caption}</div>
+                `;
+                galleryContainer.appendChild(itemDiv);
+            });
+        }
+
+        // 3. Filter Function (Remains the same)
+        function filterGallery(category) {
+            // Update button styles
+            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+            // Find the correct button using the category data attribute (or text)
+            const targetButton = Array.from(document.querySelectorAll('.filter-btn')).find(
+                btn => btn.innerText.toLowerCase().includes(category)
+            );
+            if (targetButton) {
+                 targetButton.classList.add('active');
+            }
+            
+            renderGallery(category);
+        }
+
+        // 4. Booking Form Submission Logic (Remains the same)
+        document.getElementById('booking-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const clientName = document.getElementById('clientName').value;
+            const sessionType = document.getElementById('sessionType').value;
+            const preferredDate = document.getElementById('preferredDate').value;
+            
+            const messageElement = document.getElementById('booking-message');
+
+            if (sessionType === "") {
+                messageElement.style.display = 'block';
+                messageElement.style.backgroundColor = '#f8d7da'; /* Light red background */
+                messageElement.style.color = '#721c24'; /* Dark red text */
+                messageElement.innerHTML = '<strong>Error:</strong> Please select a session type.';
+                return;
+            }
+
+            // Simulate booking confirmation
+            const successMessage = `
+                <i class="fas fa-check-circle"></i> 
+                <strong>Thank you, ${clientName}!</strong> Your inquiry for a 
+                <strong>${sessionType}</strong> session on ${preferredDate} has been successfully sent. 
+                I will personally review your details and respond within 48 hours.
+            `;
+
+            messageElement.style.display = 'block';
+            messageElement.style.backgroundColor = '#d4edda'; /* Light green background */
+            messageElement.style.color = '#155724'; /* Dark green text */
+            messageElement.innerHTML = successMessage;
+
+            // Clear the form fields after successful submission
+            this.reset();
+        });
+        
+        // Initial load: Render all images
+        document.addEventListener('DOMContentLoaded', () => {
+            renderGallery('all');
+            // Set 'All Categories' button active
+            document.querySelector('.filter-btn').classList.add('active');
+        });
+    </script>
+</body>
+</html>
